@@ -2207,7 +2207,6 @@ namespace MediaBrowser.Controller.MediaEncoding
                 resultChannels = resultChannels.HasValue
                     ? Math.Min(resultChannels.Value, request.TranscodingMaxAudioChannels.HasValue ? request.TranscodingMaxAudioChannels.Value : resultChannels.Value)
                     : request.TranscodingMaxAudioChannels.HasValue ? request.TranscodingMaxAudioChannels.Value : resultChannels;
-//                 GetMinValue(request.TranscodingMaxAudioChannels, resultChannels);
                 resultChannels = resultChannels.HasValue
                     ? Math.Min(resultChannels.Value, transcoderChannelLimit.Value)
                     : transcoderChannelLimit.Value;
@@ -2226,20 +2225,20 @@ namespace MediaBrowser.Controller.MediaEncoding
             return resultChannels;
         }
 
-        private int? GetMinValue(int? val1, int? val2)
-        {
-            if (!val1.HasValue)
-            {
-                return val2;
-            }
+//         private int? GetMinValue(int? val1, int? val2)
+//         {
+//             if (!val1.HasValue)
+//             {
+//                 return val2;
+//             }
 
-            if (!val2.HasValue)
-            {
-                return val1;
-            }
+//             if (!val2.HasValue)
+//             {
+//                 return val1;
+//             }
 
-            return Math.Min(val1.Value, val2.Value);
-        }
+//             return Math.Min(val1.Value, val2.Value);
+//         }
 
         /// <summary>
         /// Enforces the resolution limit.
