@@ -2194,10 +2194,6 @@ namespace MediaBrowser.Controller.MediaEncoding
             var isTranscodingAudio = !IsCopyCodec(codec);
 
             int? resultChannels = state.GetRequestedAudioChannels(codec);
-            if (isTranscodingAudio)
-            {
-                resultChannels = GetMinValue(request.TranscodingMaxAudioChannels, resultChannels);
-            }
 
             if (inputChannels.HasValue)
             {
@@ -2206,8 +2202,9 @@ namespace MediaBrowser.Controller.MediaEncoding
                     : inputChannels.Value;
             }
 
-            if (isTranscodingAudio && transcoderChannelLimit.HasValue)
+            if (isTranscodingAudio)
             {
+                resultChannels = GetMinValue(request.TranscodingMaxAudioChannels, resultChannels);
                 resultChannels = resultChannels.HasValue
                     ? Math.Min(resultChannels.Value, transcoderChannelLimit.Value)
                     : transcoderChannelLimit.Value;
