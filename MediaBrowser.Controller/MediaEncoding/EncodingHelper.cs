@@ -2188,7 +2188,7 @@ namespace MediaBrowser.Controller.MediaEncoding
             else
             {
                 // If we don't have any media info then limit it to 6 to prevent encoding errors due to asking for too many channels
-                transcoderChannelLimit = 6;
+                transcoderChannelLimit = 8;
             }
 
             var isTranscodingAudio = !IsCopyCodec(codec);
