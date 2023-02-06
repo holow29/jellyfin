@@ -2205,11 +2205,12 @@ namespace MediaBrowser.Controller.MediaEncoding
             if (isTranscodingAudio)
             {
                 resultChannels = resultChannels.HasValue
-                    ? Math.Min(resultChannels.Value, request.TranscodingMaxAudioChannels.HasValue ? request.TranscodingMaxAudioChannels.Value : resultChannels.Value)
-                    : request.TranscodingMaxAudioChannels.HasValue ? request.TranscodingMaxAudioChannels.Value : resultChannels;
-                resultChannels = resultChannels.HasValue
-                    ? Math.Min(resultChannels.Value, transcoderChannelLimit.Value)
-                    : transcoderChannelLimit.Value;
+                    ? Math.Min(resultChannels.Value, request.TranscodingMaxAudioChannels.HasValue 
+                               ? Math.Min(request.TranscodingMaxAudioChannels.Value, transcoderChannelLimit.Value) 
+                               : transcoderChannelLimit.Value)
+                    : request.TranscodingMaxAudioChannels.HasValue 
+                        ? Math.Min(request.TranscodingMaxAudioChannels.Value, transcoderChannelLimit.Value) 
+                        : transcoderChannelLimit.Value;
             }
 
             // Avoid transcoding to audio channels other than 1ch, 2ch, 6ch (5.1 layout) and 8ch (7.1 layout).
@@ -2224,21 +2225,6 @@ namespace MediaBrowser.Controller.MediaEncoding
 
             return resultChannels;
         }
-
-//         private int? GetMinValue(int? val1, int? val2)
-//         {
-//             if (!val1.HasValue)
-//             {
-//                 return val2;
-//             }
-
-//             if (!val2.HasValue)
-//             {
-//                 return val1;
-//             }
-
-//             return Math.Min(val1.Value, val2.Value);
-//         }
 
         /// <summary>
         /// Enforces the resolution limit.
