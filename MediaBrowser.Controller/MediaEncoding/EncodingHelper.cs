@@ -2187,7 +2187,7 @@ namespace MediaBrowser.Controller.MediaEncoding
             }
             else
             {
-                // If we don't have any media info then limit it to 6 to prevent encoding errors due to asking for too many channels
+                // If we don't have any media info then limit it to 8 to prevent encoding errors due to asking for too many channels
                 transcoderChannelLimit = 8;
             }
 
@@ -2204,7 +2204,10 @@ namespace MediaBrowser.Controller.MediaEncoding
 
             if (isTranscodingAudio)
             {
-                resultChannels = GetMinValue(request.TranscodingMaxAudioChannels, resultChannels);
+                resultChannels = resultChannels.HasValue
+                    ? Math.Min(resultChannels.Value, request.TranscodingMaxAudioChannels.HasValue ? request.TranscodingMaxAudioChannels.Value : resultChannels.Value)
+                    : request.TranscodingMaxAudioChannels.HasValue ? request.TranscodingMaxAudioChannels.Value : resultChannels;
+//                 GetMinValue(request.TranscodingMaxAudioChannels, resultChannels);
                 resultChannels = resultChannels.HasValue
                     ? Math.Min(resultChannels.Value, transcoderChannelLimit.Value)
                     : transcoderChannelLimit.Value;
