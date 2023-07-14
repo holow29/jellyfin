@@ -5921,8 +5921,8 @@ namespace MediaBrowser.Controller.MediaEncoding
             {
                 // DTS and TrueHD are not supported by HLS
                 // Keep them in the supported codecs list, but shift them to the end of the list so that if transcoding happens, another codec is used
-                shiftAudioCodecs.Add("dca");
-                shiftAudioCodecs.Add("truehd");
+                //shiftAudioCodecs.Add("dca");
+                //shiftAudioCodecs.Add("truehd");
             }
             else
             {
