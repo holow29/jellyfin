@@ -114,14 +114,14 @@ public class NetworkConfiguration
     public bool EnableUPnP { get; set; }
 
     /// <summary>
-    /// Gets or sets a value indicating whether IPv6 is enabled.
+    /// Gets or sets a value indicating whether IPv4 is enabled.
     /// </summary>
     public bool EnableIPv4 { get; set; } = true;
 
     /// <summary>
     /// Gets or sets a value indicating whether IPv6 is enabled.
     /// </summary>
-    public bool EnableIPv6 { get; set; }
+    public bool EnableIPv6 { get; set; } = true;
 
     /// <summary>
     /// Gets or sets a value indicating whether access from outside of the LAN is permitted.
